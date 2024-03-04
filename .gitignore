@@ -2,14 +2,8 @@
 __pycache__/
 
 # Distribution / packaging
-.Python
-build/
-eggs/
-.eggs/
 *.egg-info/
 *.egg
-MANIFEST
-data
 .coverage
 .ipynb_checkpoints
 **/*.DS_Store
