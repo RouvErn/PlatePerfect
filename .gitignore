@@ -9,3 +9,12 @@ eggs/
 *.egg-info/
 *.egg
 MANIFEST
+data
+.coverage
+.ipynb_checkpoints
+**/*.DS_Store
+data_raw/
+data_processed/
+*.csv
+.env
+.vscode/
