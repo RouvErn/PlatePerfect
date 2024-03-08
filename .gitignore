@@ -12,3 +12,5 @@ data_processed/
 *.csv
 .env
 .vscode/
+*.xlsx
+*.png
