@@ -4,28 +4,25 @@ import requests
 import json
 
 # Load the image classification pipeline with the desired model
-image_classification_pipe = pipeline("image-classification", model="aspis/swin-finetuned-food101", from_pt=True)
+image_classification_pipe = pipeline("image-classification",model="aspis/swin-finetuned-food101" )
+#model="aspis/swin-finetuned-food101"
+#model="nateraw/food"
 
-
-# CalorieNinjas API endpoint
-CALORIE_NINJAS_API_URL = "https://api.calorieninjas.com/v1/nutrition"
-
-
-# API key for accessing CalorieNinjas API
-API_KEY = "w210jDXcjkPMbH1kJaOKoA==S8t1b5l9MvkPhZkQ"
-
-
-
-def get_calories(food):
-    headers = {'X-Api-Key': API_KEY}
-    response = requests.get(f"{CALORIE_NINJAS_API_URL}?query={food}", headers=headers)
-    if response.status_code == 200:
-        return response.json()
+def get_calories(food, serving_size_grams=None):
+    url = "https://api.calorieninjas.com/v1/nutrition?query="
+    headers = {
+        'X-Api-Key': 'w210jDXcjkPMbH1kJaOKoA==S8t1b5l9MvkPhZkQ'
+    }
+    if serving_size_grams:
+        query = f"{serving_size_grams}g {food}"
+        url += query
     else:
-        return None
+        url += food
+    response = requests.get(url, headers=headers).json()
+    return response
 
 
-def predict_with_pipeline_and_calories(image_paths):
+def predict_with_pipeline_and_calories(image_paths, serving_size_grams=None):
     """
     Function to make predictions using the image classification pipeline for multiple images and retrieve nutritional information.
 
@@ -41,7 +38,7 @@ def predict_with_pipeline_and_calories(image_paths):
         prediction = image_classification_pipe(image_path)[0]  # Assuming only one prediction per image
 
         # Get nutritional information using the predicted food label
-        nutritional_info = get_calories(prediction['label'])
+        nutritional_info = get_calories(prediction['label'], serving_size_grams)
 
         # Combine prediction and nutritional information
         prediction_with_calories = {
