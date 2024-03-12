@@ -10,7 +10,7 @@ CLI command to build docker image locally:
 # docker build --platform linux/amd64 -t  $GCP_REGION-docker.pkg.dev/$GCP_PROJECT/plateperfect/$GAR_IMAGE:prod .
 
 CLI command to create Google Artifact Registry:
-# gcloud artifacts repositories create plateperfect --repository-format=docker \                                 
+# gcloud artifacts repositories create plateperfect --repository-format=docker \                                  [🐍 PlatePerfect]
 # --location=$GCP_REGION --description="Repository for storing plateperfect images"
 
 CLI command to push docker image to Google Artifact Registry:
@@ -22,4 +22,5 @@ CLI command to deploy docker image on Google Artifact Registry onto Google Cloud
 After usage of Google Cloud Run - delete otherwise cost will occur (can't pause)
 
 Streamlit
-# CLI command to run: "streamlit run PlatePerfect/app.py"
+CLI command to run:
+# streamlit run PlatePerfect/app.py
