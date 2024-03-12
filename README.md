@@ -10,7 +10,7 @@ CLI command to build docker image locally:
 # docker build --platform linux/amd64 -t  $GCP_REGION-docker.pkg.dev/$GCP_PROJECT/plateperfect/$GAR_IMAGE:prod .
 
 CLI command to create Google Artifact Registry:
-# gcloud artifacts repositories create plateperfect --repository-format=docker \                                  [🐍 PlatePerfect]
+# gcloud artifacts repositories create plateperfect --repository-format=docker \                                 
 # --location=$GCP_REGION --description="Repository for storing plateperfect images"
 
 CLI command to push docker image to Google Artifact Registry:
