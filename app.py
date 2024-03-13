@@ -10,6 +10,8 @@ st.write('Please enter the URL of your food image and the serving size below!')
 # URL input for the image
 image_url = st.text_input("Enter the URL of the food image")
 
+#image_url = st.file_uploader("Enter the URL of the food image")
+
 # Serving size input
 serving_size_grams = st.number_input("Enter the serving size in grams", min_value=0)
 
@@ -33,16 +35,16 @@ if st.button('Predict') and image_url:
             for food in item['calories']['items']:
                 st.write(f"**Food Name**: {food['name']}")
                 st.write(f"**Calories**: {food['calories']} kcal")
-                st.write(f"**Serving Size**: {food['serving_size_g']} g")
-                st.write(f"**Total Fat**: {food['fat_total_g']} g")
-                st.write(f"**Saturated Fat**: {food['fat_saturated_g']} g")
-                st.write(f"**Protein**: {food['protein_g']} g")
-                st.write(f"**Sodium**: {food['sodium_mg']} mg")
-                st.write(f"**Potassium**: {food['potassium_mg']} mg")
-                st.write(f"**Cholesterol**: {food['cholesterol_mg']} mg")
-                st.write(f"**Total Carbohydrates**: {food['carbohydrates_total_g']} g")
-                st.write(f"**Dietary Fiber**: {food['fiber_g']} g")
-                st.write(f"**Sugars**: {food['sugar_g']} g")
+                st.write(f"- **Serving Size**: {food['serving_size_g']} g")
+                st.write(f"- **Total Fat**: {food['fat_total_g']} g")
+                st.write(f"- **Saturated Fat**: {food['fat_saturated_g']} g")
+                st.write(f"- **Protein**: {food['protein_g']} g")
+                st.write(f"- **Sodium**: {food['sodium_mg']} mg")
+                st.write(f"- **Potassium**: {food['potassium_mg']} mg")
+                st.write(f"- **Cholesterol**: {food['cholesterol_mg']} mg")
+                st.write(f"- **Total Carbohydrates**: {food['carbohydrates_total_g']} g")
+                st.write(f"- **Dietary Fiber**: {food['fiber_g']} g")
+                st.write(f"- **Sugars**: {food['sugar_g']} g")
 
     except Exception as e:
         st.write("An error occurred:", e)

@@ -1,7 +1,6 @@
 # hugging face transfer learning model
 from transformers import pipeline
 import requests
-import json
 import os
 
 # Load the image classification pipeline with the desired model
@@ -12,7 +11,7 @@ image_classification_pipe = pipeline("image-classification",model="aspis/swin-fi
 def get_calories(food, serving_size_grams=None):
     url = "https://api.calorieninjas.com/v1/nutrition?query="
     headers = {
-        'X-Api-Key': os.environ('API_KEY')
+        'X-Api-Key': os.environ['API_KEY']
     }
     if serving_size_grams:
         query = f"{serving_size_grams}g {food}"
