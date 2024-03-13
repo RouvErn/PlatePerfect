@@ -5,7 +5,7 @@ from io import BytesIO
 
 # Define the FastAPI endpoint URL
 API_URL = "http://localhost:8000/predict"  # Update with your FastAPI server URL
-
+#"https://plateperfect2-qo3jjoz2na-ew.a.run.app/predict"
 
 def predict_with_pipeline_and_calories(image_bytes, serving_size_grams):
     files = {'image_files': ("image.jpg", image_bytes, "image/jpeg")}
@@ -21,7 +21,6 @@ def main():
     st.write('---')
 
     st.write('Please upload an image of your meal and enter the serving size below! ☺️')
-
 
     uploaded_file = st.file_uploader("Upload Image", type=['png', 'jpg', 'jpeg'])
 
@@ -39,8 +38,6 @@ def main():
             image.save(image_bytes, format='JPEG')
             # Make prediction
             predictions = predict_with_pipeline_and_calories(image_bytes.getvalue(), serving_size_grams)
-
-            print(predictions)
 
             # Display predictions
             for idx, prediction in enumerate(predictions):
