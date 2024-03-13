@@ -16,6 +16,10 @@ deploy-cloud-run:
     gcloud run deploy --image $(GCP_REGION)-docker.pkg.dev/$(GCP_PROJECT)/plateperfect/$(GAR_IMAGE):prod \
     --memory $(GAR_MEMORY) --region $(GCP_REGION)
 
-# Run Streamlit app
+# Run Streamlit - app.py
 run-streamlit:
     streamlit run PlatePerfect/app.py
+
+# Run Fast API - fast.py
+run-uvicorn:
+    uvicorn PlatePerfect_2.api.fast_2:app
