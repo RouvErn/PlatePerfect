@@ -1,46 +1,21 @@
-from transformers import pipeline
-import requests
-from PIL import Image
-from io import BytesIO
 import streamlit as st
-
-# Load the image classification pipeline with the desired model
-image_classification_pipe = pipeline("image-classification", model="aspis/swin-finetuned-food101")
-
-def get_calories(food, serving_size_grams=None):
-    url = "https://api.calorieninjas.com/v1/nutrition?query="
-    headers = {
-        'X-Api-Key': 'w210jDXcjkPMbH1kJaOKoA==S8t1b5l9MvkPhZkQ'
-    }
-    if serving_size_grams:
-        query = f"{serving_size_grams}g {food}"
-        url += query
-    else:
-        url += food
-    response = requests.get(url, headers=headers).json()
-    return response
-
-def predict_with_pipeline_and_calories(image_data, serving_size_grams=None):
-    predictions_with_calories = []
-    for img in image_data:
-        prediction = image_classification_pipe(img)[0]
-        nutritional_info = get_calories(prediction['label'], serving_size_grams)
-        prediction_with_calories = {
-            'label': prediction['label'],
-            'score': prediction['score'],
-            'calories': nutritional_info
-        }
-        predictions_with_calories.append(prediction_with_calories)
-    return predictions_with_calories
+from PIL import Image
+from PlatePerfect_2.main_2 import predict_with_pipeline_and_calories
 
 def main():
-    st.title("Image Classifier with Calorie Estimation")
+    # Set the title and description
+    st.title('Welcome to Plate Perfect!')
+    st.write('Calorie tracking made easy - simple Food Image Recognition to keep track of your diet.! 😄')
+    st.write('Please upload your food image and enter the serving size below!')
 
     uploaded_files = st.file_uploader("Upload Images", accept_multiple_files=True, type=['png', 'jpg', 'jpeg'])
 
     serving_size_grams = st.number_input("Enter serving size in grams", min_value=1, value=150)
 
     if uploaded_files:
+        # blob & client aber anstatt download mach upload
+
+
         if st.button("Predict"):
             image_data = [Image.open(file) for file in uploaded_files]
             predictions_with_calories = predict_with_pipeline_and_calories(image_data, serving_size_grams)

@@ -1,7 +1,6 @@
 # hugging face transfer learning model
 from transformers import pipeline
 import requests
-import json
 import os
 
 # Load the image classification pipeline with the desired model

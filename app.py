@@ -8,7 +8,9 @@ st.write('Calorie tracking made easy - simple Food Image Recognition to keep tra
 st.write('Please enter the URL of your food image and the serving size below!')
 
 # URL input for the image
-image_url = st.text_input("Enter the URL of the food image")
+#image_url = st.text_input("Enter the URL of the food image")
+
+image_url = st.file_uploader("Enter the URL of the food image")
 
 # Serving size input
 serving_size_grams = st.number_input("Enter the serving size in grams", min_value=0)
@@ -21,6 +23,7 @@ if image_url:
 if st.button('Predict') and image_url:
     try:
         # API URL with placeholders filled
+        breakpoint()
         api_url = f"https://plateperfect-qo3jjoz2na-ew.a.run.app/predict?image_paths={image_url}&serving_size_grams={serving_size_grams}"
 
         # Send a request to the API

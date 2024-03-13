@@ -1,9 +1,6 @@
 
-import json
 from fastapi import FastAPI
-#from PlatePerfect.main import predict_with_pipeline_and_calories
 from fastapi.middleware.cors import CORSMiddleware
-
 from PlatePerfect.main import predict_with_pipeline_and_calories
 
 app = FastAPI()
