@@ -18,19 +18,19 @@ app.add_middleware(
 )
 
 
-@app.post("/predict")
-async def predict(image_files: List[UploadFile], serving_size_grams: int):
+@app.get("/predict")
+async def predict(image_url, serving_size_grams: int):
     """
     Endpoint to predict food items in images and retrieve nutritional information.
     Expects a list of uploaded image files and serving size in grams.
     """
-    image_data = []
-    for image_file in image_files:
-        contents = await image_file.read()
-        image = Image.open(BytesIO(contents))
-        image_data.append(image)
+    # image_data = []
+    # for image_file in image_files:
+    #     contents = await image_file.read()
+    #     image = Image.open(BytesIO(contents))
+    #     image_data.append(image)
 
-    predictions_with_calories = predict_with_pipeline_and_calories(image_data, serving_size_grams)
+    predictions_with_calories = predict_with_pipeline_and_calories(image_url, serving_size_grams)
     return predictions_with_calories
 
 @app.get("/")

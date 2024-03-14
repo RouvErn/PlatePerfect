@@ -7,3 +7,4 @@ watchdog==4.0.0
 huggingface-hub
 pillow
 python-multipart
+google-auth
