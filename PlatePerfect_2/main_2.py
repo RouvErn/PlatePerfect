@@ -18,15 +18,24 @@ def get_calories(food, serving_size_grams=None):
     response = requests.get(url, headers=headers).json()
     return response
 
-def predict_with_pipeline_and_calories(image_data, serving_size_grams=None):
-    predictions_with_calories = []
-    for img in image_data:
-        prediction = image_classification_pipe(img)[0]
-        nutritional_info = get_calories(prediction['label'], serving_size_grams)
-        prediction_with_calories = {
-            'label': prediction['label'],
-            'score': prediction['score'],
-            'calories': nutritional_info
-        }
-        predictions_with_calories.append(prediction_with_calories)
-    return predictions_with_calories
+def predict_with_pipeline_and_calories(image_url, serving_size_grams=None):
+    # predictions_with_calories = []
+    # for img in image_data:
+    #     prediction = image_classification_pipe(img)[0]
+    #     nutritional_info = get_calories(prediction['label'], serving_size_grams)
+    #     prediction_with_calories = {
+    #         'label': prediction['label'],
+    #         'score': prediction['score'],
+    #         'calories': nutritional_info
+    #     }
+    #     predictions_with_calories.append(prediction_with_calories)
+    prediction = image_classification_pipe(image_url)[0]
+    nutritional_info = get_calories(prediction['label'], serving_size_grams)
+
+    prediction_with_calories = {
+        'label': prediction['label'],
+        'score': prediction['score'],
+        'calories': nutritional_info
+    }
+
+    return prediction_with_calories
