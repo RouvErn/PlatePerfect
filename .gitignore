@@ -16,3 +16,5 @@ data_processed/
 *.png
 
 credentials.json
+*.jpeg
+*.jpg
