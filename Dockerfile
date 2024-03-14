@@ -1,6 +1,7 @@
 FROM python:3.10.6-buster
 COPY PlatePerfect_2 PlatePerfect_2
 COPY requirements.txt requirements.txt
+COPY credentials.json credentials.json
 #COPY Makefile Makefile
 #RUN make reset_local_files
 RUN pip install --upgrade pip
