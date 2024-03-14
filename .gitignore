@@ -14,3 +14,5 @@ data_processed/
 .vscode/
 *.xlsx
 *.png
+
+credentials.json
