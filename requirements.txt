@@ -8,3 +8,4 @@ huggingface-hub
 pillow
 python-multipart
 google-auth
+google-cloud-storage
