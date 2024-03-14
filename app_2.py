@@ -37,8 +37,8 @@ def main():
 
     if st.button("Predict"):
         if uploaded_file:
-            service_account_info = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
-            credentials = service_account.Credentials.from_service_account_file(service_account_info)
+            service_account_info = json.load(open(os.environ['GOOGLE_APPLICATION_CREDENTIALS']))
+            credentials = service_account.Credentials.from_service_account_info(service_account_info)
 
             client = storage.Client(credentials=credentials, project='plateperfect')
             bucket = client.get_bucket('plateperfect_public')
