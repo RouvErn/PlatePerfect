@@ -38,9 +38,13 @@ def main():
     if st.button("Predict"):
         if uploaded_file:
             # service_account_info = json.load(open(os.environ['GOOGLE_APPLICATION_CREDENTIALS']))
-            # credentials = service_account.Credentials.from_service_account_info(service_account_info)
+            #credentials = service_account.Credentials.from_service_account_info(service_account_info)
 
-            client = storage.Client(project='plateperfect') #credentials=os.environ['GOOGLE_APPLICATION_CREDENTIALS'],
+            credentials = service_account.Credentials.from_service_account_file(
+            '/Users/RouvenErnst/code/RouvErn/gcp/mineral-bonus-411314-3d34a7aa21e6.json'
+            )
+
+            client = storage.Client(credentials=credentials, project='plateperfect') #credentials=os.environ['GOOGLE_APPLICATION_CREDENTIALS'],
             bucket = client.get_bucket('plateperfect_public')
 
             blob = bucket.blob(uploaded_file.name)
